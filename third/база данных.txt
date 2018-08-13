@@ -1,0 +1,28 @@
+CREATE TABLE people
+(
+  human_id INT NOT NULL AUTO_INCREMENT,
+  last_name VARCHAR(50) NOT NULL,
+  first_name VARCHAR(50) NOT NULL,
+  middlename VARCHAR(50) NOT NULL,
+  PRIMARY KEY (human_id)
+) ENGINE=InnoDB;
+
+
+CREATE TABLE phones
+(
+  phone_id INT NOT NULL AUTO_INCREMENT,
+  phone_number VARCHAR(11) NOT NULL,
+  PRIMARY KEY (phone_id)
+) ENGINE=InnoDB;
+
+
+CREATE TABLE connection
+(
+  phone_id INT NOT NULL,
+  human_id INT NOT NULL,
+  primary key (phone_id, human_id),
+  FOREIGN KEY (phone_id) 
+        REFERENCES phones(phone_id) ON DELETE CASCADE,
+  FOREIGN KEY (human_id) 
+        REFERENCES people(human_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
